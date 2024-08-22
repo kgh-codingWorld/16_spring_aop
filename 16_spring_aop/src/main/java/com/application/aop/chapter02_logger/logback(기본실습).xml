@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<!-- 
+    
+    	[로깅 출력 패턴]
+	
+    		- 로깅 출력 패턴을 변경하여 적용 가능하다.
+    		
+		    1) %d{yyyy-MM-dd HH:mm:ss}: 로그 이벤트의 발생 시간을 날짜 및 시간 형식으로 출력한다.
+			2) [%thread]: 현재 스레드의 이름을 출력한다.
+			3) %-5level: 로그 레벨을 5자리로 출력하며, 왼쪽 정렬된다.
+			4) %logger{36}: 로그 이벤트를 발생시킨 로거의 이름을 36자로 제한하여 출력한다.
+			5) %msg%n: 로그 메시지와 개행 문자를 출력한다.
+    
+     -->
+    
+    <!--로그를 콘솔에 출력하는 appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 로거 설정 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

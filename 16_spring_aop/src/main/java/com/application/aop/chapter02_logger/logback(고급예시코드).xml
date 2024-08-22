@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  
+    <!-- 콘솔로깅 appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>  <!-- 로깅 패턴 -->
+        </encoder>
+    </appender>
+    
+    <!--(추가) 로그 파일 경로 -->
+    <property name="LOG_PATH" value="(write file path)"/> <!-- ${user.home}/logs/test.log -->
+    
+    <!-- (추가) 파일 로깅 appender (DailyRollingFileAppender )-->
+    <appender name="DAILY_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}</file>													  <!-- 로그파일 경로 및 이름 설정 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>app.log.%d{yyyy-MM-dd}.log</fileNamePattern>             <!-- 파일 이름 패턴 설정 -->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>  <!-- 로깅 패턴 -->
+        </encoder>
+    </appender>
+
+    <!-- application 기본설정 -->
+    <root level="INFO"> 
+        <appender-ref ref="CONSOLE"/> 					<!-- 콘솔환경에 로깅 구현 -->
+        <appender-ref ref="DAILY_FILE"/> 				<!-- (추가)파일환경에 로깅 구현 -->
+    </root>
+ 
+ 
+ 	<!-- 
+
+		# application.properties파일에 추가적인 설정을 하여 디테일하게 로그를 사용할 수 있다.
+ 	
+ 		# 1) 애플리케이션 전체에 대한 기본 로깅
+		#logging.level.root=info
+		
+		# 2) 스프링프레임워크의 내부 동작에 대한 로깅
+		#logging.level.org.springframework=info
+		
+		# 3) 특정 클래스에 대한 별도의 로깅 (logging.level.특정패키지.특정클래스명=로깅레벨)
+		#logging.level.com.application.aop.chapter02_logger.LoggerAdvice=trace
+ 	
+ 	 -->
+ 
+</configuration>
