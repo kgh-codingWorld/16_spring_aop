@@ -1,0 +1,52 @@
+2024-08-28 16:18:52.425 [http-nio-80-exec-9] INFO  jdbc.sqlonly - SELECT MEMBER_ID
+		FROM   MEMBER
+		WHERE  MEMBER_ID = 'qwer1234'
+
+2024-08-28 16:19:53.368 [http-nio-80-exec-4] INFO  jdbc.sqlonly - INSERT INTO MEMBER (
+			MEMBER_ID,
+			PASSWD,
+			PROFILE_ORIGINAL_NAME,
+			PROFILE_UUID,
+			MEMBER_NM,
+			SEX,
+			BIRTH_AT,
+			HP,
+			SMSSTS_YN,
+			EMAIL,
+			EMAILSTS_YN,
+			ZIPCODE,
+			ROAD_ADDRESS,
+			JIBUN_ADDRESS,
+			NAMUJI_ADDRESS,
+			ETC
+		) 
+		VALUES (
+			'qwer1234',
+			'$2a$10$LFHFhOWjr9lY8xWwfSgGyukg5vdAC2ox77GCjrNfxmrxiAZEdwjgu',
+			'500.PNG',
+			'087efed0-4252-410a-b2e7-d0f671888158.PNG',
+			'김길동',
+			'm',
+			'08/28/2024 00:00:00.000',
+			'010-1123-4561',
+			'y',
+			'qwer1234@gmail.com',
+			'y',
+			'13524',
+			'경기 성남시 분당구 판교역로192번길 12 (삼평동)',
+			'경기 성남시 분당구 삼평동 664',
+			'응애',
+			'<p>글</p>
+'
+		 )
+
+2024-08-28 16:20:43.647 [http-nio-80-exec-10] INFO  jdbc.sqlonly - SELECT	PASSWD ,
+				ACTIVE_YN
+		FROM	MEMBER
+		WHERE	MEMBER_ID = 'qwer1234'
+
+2024-08-28 16:22:59.007 [scheduling-1] INFO  jdbc.sqlonly - SELECT	MEMBER_ID , 
+					PROFILE_UUID
+			FROM	MEMBER
+			WHERE	INACTIVE_AT >= (SELECT DATE_SUB(NOW() , INTERVAL 90 DAY))
+
